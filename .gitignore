@@ -5,5 +5,4 @@ Thumbs.db
 package-lock.json
 
 #directory ignore
-dist/
 node_modules/
