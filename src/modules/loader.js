@@ -2,13 +2,15 @@ import axios from 'axios';
 import data from "./data";
 
 export default class {
-  constructor() {
+  constructor(core, options) {
     let self = this;
+    self.Core = core;
+    self.dir = options.dir;
     self.filePaths = [];
     self.current = 0;
     self.Data = new data();
 
-    axios('./Jsons/dolphin.json').then(function(res) {
+    axios(self.dir + '/dolphin.json').then(function(res) {
       self.setFilePaths(res.data.files);
       self.Data.setFrames(res.data.frames)
       self.loadData();
@@ -17,7 +19,7 @@ export default class {
   }
   setFilePaths(files) {
     for(let i=0;i<files; i++) {
-      this.filePaths.push('./Jsons/data0' + (i+1) + '.json');
+      this.filePaths.push(this.dir + '/data0' + (i+1) + '.json');
     }
   }
   loadData() {
