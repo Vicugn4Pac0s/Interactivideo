@@ -7,9 +7,20 @@
 </head>
 <body>
   
+  <div>
+    <img id="js-dolphin" src="" alt="">
+  </div>
+
   <script src="./main.js"></script>
   <script>
-    new dolphin();
+
+    var dolphin = new dolphin('js-dolphin');
+    dolphin.load({
+      'dir': './Jsons',
+    });
+    dolphin.on('loadEnd', function(e) {
+      console.log(e);
+    });
   </script>
 </body>
 </html>

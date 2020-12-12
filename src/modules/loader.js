@@ -15,6 +15,7 @@ export default class {
       self.Data.setFrames(res.data.frames)
       self.loadData();
       // オブザーバーLOADSTARTイベント
+      self.Core.Observer.trigger('loadStart', {});
     });
   }
   setFilePaths(files) {
@@ -27,8 +28,8 @@ export default class {
     axios(self.filePaths[self.current]).then(function(res) {
       self.Data.pushData(res.data);
       if( !self.filePaths[self.current + 1] ) {
-        console.log('これで終わり');
         // オブザーバーLOADENDイベント
+        self.Core.Observer.trigger('loadEnd', {});
         return false;
       }
       self.current++;
