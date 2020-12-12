@@ -1,5 +1,6 @@
 import observer from "./modules/observer";
 import loader from "./modules/loader";
+import player from "./modules/player";
 
 export default class {
   constructor(selector, options = {}) {
