@@ -16,10 +16,12 @@
 
     var dolphin = new dolphin('js-dolphin');
     dolphin.load({
+      'eventId': 'movie01',
       'dir': './Jsons',
     });
+    
     dolphin.on('loadEnd', function(e) {
-      console.log(e);
+      
     });
   </script>
 </body>

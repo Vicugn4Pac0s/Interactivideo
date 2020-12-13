@@ -8,7 +8,9 @@ export default class {
     self.dir = options.dir;
     self.filePaths = [];
     self.current = 0;
+    
     self.Data = new data();
+    self.Core.DataManager.register(options.eventId, self.Data);
 
     axios(self.dir + '/dolphin.json').then(function(res) {
       self.setFilePaths(res.data.files);
