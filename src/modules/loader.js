@@ -1,5 +1,6 @@
 import axios from 'axios';
 import data from "./data";
+import { convert_zeroPadding } from "../utilities/utilities";
 
 export default class {
   constructor(core, options) {
@@ -22,7 +23,7 @@ export default class {
   }
   setFilePaths(files) {
     for(let i=0;i<files; i++) {
-      this.filePaths.push(this.dir + '/data0' + (i+1) + '.json');
+      this.filePaths.push(this.dir + '/data' + convert_zeroPadding(i+1) + '.json');
     }
   }
   loadData() {
