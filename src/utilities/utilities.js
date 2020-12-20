@@ -1,3 +1,8 @@
+export function convert_to_percentage(x, y) {
+  let tmp = y / x;
+  return Math.floor( tmp * 10000) / 100;
+}
+
 export function convert_zeroPadding(index) {
   var new_index = index;
   if(index < 10 ) { // indexが10以下なら

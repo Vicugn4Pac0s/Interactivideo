@@ -27,6 +27,9 @@ export default class {
       case "end":
         this.Observer.on("end", callback.bind(this));
         break;
+      case "playing":
+        this.Observer.on("playing", callback.bind(this));
+        break;
       default:
         console.log("Error");
     }
