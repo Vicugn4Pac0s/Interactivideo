@@ -17,8 +17,7 @@ export default class {
       self.setFilePaths(res.data.files);
       self.Data.setFrames(res.data.frames)
       self.loadData();
-      // オブザーバーLOADSTARTイベント
-      self.Core.Observer.trigger('loadStart', {});
+      self.Core.Observer.trigger('loadStart', {}); // オブザーバーLOADSTARTイベント
     });
   }
   setFilePaths(files) {
@@ -31,8 +30,8 @@ export default class {
     axios(self.filePaths[self.current]).then(function(res) {
       self.Data.pushData(res.data);
       if( !self.filePaths[self.current + 1] ) {
-        // オブザーバーLOADENDイベント
-        self.Core.Observer.trigger('loadEnd', {});
+        self.Data.complete();
+        self.Core.Observer.trigger('loadEnd', {}); // オブザーバーLOADENDイベント
         return false;
       }
       self.current++;

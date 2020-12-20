@@ -17,6 +17,12 @@ export default class {
       this.aData = this.Core.DataManager.get(eventId);
       this.frame = 0;
     }
+    if(this.aData.data.state === 0) { //読み込みが完了していない場合
+      this.Core.on('loadEnd', function(e) {
+        this.play(eventId);
+      });
+      return;
+    }
     this.timer = requestAnimationFrame(this.playTimer.bind(this));
     this.state = 1;
   }
