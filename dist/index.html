@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dolphin</title>
+  <style>
+    .btn {
+      background: #eee;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 20px;
+      margin: 0 10px;
+    }
+  </style>
 </head>
 <body>
   
@@ -11,6 +21,19 @@
     <img id="js-dolphin" src="" alt="">
   </div>
 
+  <p id="js-play" class="btn">
+    Play
+  </p>
+  <p id="js-stop" class="btn">
+    Stop
+  </p>
+  <p id="js-pause" class="btn">
+    Pause
+  </p>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
   <script src="./main.js"></script>
   <script>
 
@@ -21,8 +44,18 @@
     });
     
     dolphin.on('loadEnd', function(e) {
-      
     });
+
+    $('#js-play').on('click', function() {
+      dolphin.play('movie01');
+    });
+    $('#js-stop').on('click', function() {
+      dolphin.stop();
+    });
+    $('#js-pause').on('click', function() {
+      dolphin.pause();
+    });
+    
   </script>
 </body>
 </html>

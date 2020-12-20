@@ -7,12 +7,12 @@ export default class {
   constructor(selector, options = {}) {
     this.selector = document.getElementById(selector);
     this.DataManager = new dataManager();
-    this.Player = new player();
+    this.Player = new player(this, {});
     this.Observer = new observer();
 
     let self = this;
     self.on('loadEnd', function(e){
-      console.log( self.DataManager.get('movie01') );
+
     });
   }
   on(eventType, callback) {
@@ -29,5 +29,14 @@ export default class {
   }
   load(options) {
     new loader(this, options);
+  }
+  play(event) {
+    this.Player.play(event);
+  }
+  stop() {
+    this.Player.stop();
+  }
+  pause() {
+    this.Player.pause();
   }
 }
