@@ -3,24 +3,33 @@ export default class {
   constructor(core, options) {
     this.Core = core;
 
-    this.ａData;
-
+    this.aData;
     this.timer;
     
+    this.state = 0; //再生中: 1 停止中: 0
     this.frame = 0;
     this.interval = fps_to_ms(15);
     this.timer_lasttime;
   }
-  play(event) {
-    this.ａData = this.Core.DataManager.get(event);
+  play(eventId) {
+    if(this.state === 1) return;
+    if(!this.aData || this.aData.id !== eventId) {
+      this.aData = this.Core.DataManager.get(eventId);
+      this.frame = 0;
+    }
     this.timer = requestAnimationFrame(this.playTimer.bind(this));
+    this.state = 1;
   }
   stop() {
+    if(this.state === 0) return;
     this.clearPlayTimer();
     this.frame = 0;
+    this.state = 0;
   }
   pause() {
+    if(this.state === 0) return;
     this.clearPlayTimer();
+    this.state = 0;
   }
   playTimer(t) {
     this.timer = requestAnimationFrame(this.playTimer.bind(this));
@@ -29,7 +38,7 @@ export default class {
     if (this.timer_lasttime) time = t - this.timer_lasttime;
     if (this.interval > time) return false;
 
-    this.Core.selector.setAttribute("src", this.ａData.data.data[this.frame].d);
+    this.Core.selector.setAttribute("src", this.aData.data.data[this.frame].d);
     this.frameIncrement();
     this.timer_lasttime = t;
   }
@@ -41,7 +50,7 @@ export default class {
   }
   frameIncrement() {
     this.frame++;
-    if (this.frame >= this.ａData.data.frames) {
+    if (this.frame >= this.aData.data.frames) {
       this.frame = 0;
     }
   }

@@ -30,8 +30,8 @@ export default class {
   load(options) {
     new loader(this, options);
   }
-  play(event) {
-    this.Player.play(event);
+  play(eventId) {
+    this.Player.play(eventId);
   }
   stop() {
     this.Player.stop();

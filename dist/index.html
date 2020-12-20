@@ -24,6 +24,9 @@
   <p id="js-play" class="btn">
     Play
   </p>
+  <p id="js-play02" class="btn">
+    Play02
+  </p>
   <p id="js-stop" class="btn">
     Stop
   </p>
@@ -42,12 +45,19 @@
       'eventId': 'movie01',
       'dir': './Jsons',
     });
+    dolphin.load({
+      'eventId': 'movie02',
+      'dir': './Jsons02',
+    });
     
     dolphin.on('loadEnd', function(e) {
     });
 
     $('#js-play').on('click', function() {
       dolphin.play('movie01');
+    });
+    $('#js-play02').on('click', function() {
+      dolphin.play('movie02');
     });
     $('#js-stop').on('click', function() {
       dolphin.stop();
