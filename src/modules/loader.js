@@ -6,18 +6,19 @@ export default class {
   constructor(core, options) {
     let self = this;
     self.Core = core;
+    self.eventId = options.eventId;
     self.dir = options.dir;
     self.filePaths = [];
     self.current = 0;
     
     self.Data = new data();
-    self.Core.DataManager.register(options.eventId, self.Data);
+    self.Core.DataManager.register(self.eventId, self.Data);
 
     axios(self.dir + '/dolphin.json').then(function(res) {
       self.setFilePaths(res.data.files);
       self.Data.setFrames(res.data.frames)
       self.loadData();
-      self.Core.Observer.trigger('loadStart', {}); // オブザーバーLOADSTARTイベント
+      self.Core.Observer.trigger('loadStart', { eventId: self.eventId }); // オブザーバーLOADSTARTイベント
     });
   }
   setFilePaths(files) {
@@ -31,7 +32,7 @@ export default class {
       self.Data.pushData(res.data);
       if( !self.filePaths[self.current + 1] ) {
         self.Data.complete();
-        self.Core.Observer.trigger('loadEnd', {}); // オブザーバーLOADENDイベント
+        self.Core.Observer.trigger('loadEnd', { eventId: self.eventId }); // オブザーバーLOADENDイベント
         return false;
       }
       self.current++;

@@ -9,11 +9,6 @@ export default class {
     this.DataManager = new dataManager();
     this.Player = new player(this, {});
     this.Observer = new observer();
-
-    let self = this;
-    self.on('loadEnd', function(e){
-
-    });
   }
   on(eventType, callback) {
     switch (eventType) {
@@ -22,6 +17,15 @@ export default class {
         break;
       case "loadEnd":
         this.Observer.on("loadEnd", callback.bind(this));
+        break;
+      case "play":
+        this.Observer.on("play", callback.bind(this));
+        break;
+      case "stop":
+        this.Observer.on("stop", callback.bind(this));
+        break;
+      case "end":
+        this.Observer.on("end", callback.bind(this));
         break;
       default:
         console.log("Error");

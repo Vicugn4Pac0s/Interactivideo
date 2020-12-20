@@ -25,17 +25,20 @@ export default class {
     }
     this.timer = requestAnimationFrame(this.playTimer.bind(this));
     this.state = 1;
+    this.Core.Observer.trigger('play', { eventId: eventId }); // オブザーバーPLAYイベント
   }
   stop() {
     if(this.state === 0) return;
     this.clearPlayTimer();
     this.frame = 0;
     this.state = 0;
+    this.Core.Observer.trigger('stop', { eventId: this.aData.id }); // オブザーバーSTOPイベント
   }
   pause() {
     if(this.state === 0) return;
     this.clearPlayTimer();
     this.state = 0;
+    this.Core.Observer.trigger('stop', { eventId: this.aData.id }); // オブザーバーSTOPイベント
   }
   playTimer(t) {
     this.timer = requestAnimationFrame(this.playTimer.bind(this));
@@ -58,6 +61,8 @@ export default class {
     this.frame++;
     if (this.frame >= this.aData.data.frames) {
       this.frame = 0;
+      this.stop();
+      this.Core.Observer.trigger('end', { eventId: this.aData.id }); // オブザーバーENDイベント
     }
   }
 }
