@@ -14,7 +14,7 @@ export default class {
     self.Data = new data();
     self.Core.DataManager.register(self.eventId, self.Data);
 
-    axios(self.dir + '/dolphin.json').then(function(res) {
+    axios(self.dir + '/settings.json').then(function(res) {
       self.setFilePaths(res.data.files);
       self.Data.setFrames(res.data.frames)
       self.loadData();

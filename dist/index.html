@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dolphin</title>
+  <title>Interactivideo</title>
   <style>
     .btn {
       background: #eee;
@@ -18,7 +18,7 @@
 <body>
   
   <div>
-    <img id="js-dolphin" src="" alt="">
+    <img id="js-Interactivideo" src="" alt="">
   </div>
 
   <p id="js-play" class="btn">
@@ -40,33 +40,33 @@
   <script src="./main.js"></script>
   <script>
 
-    var dolphin = new dolphin('js-dolphin');
-    dolphin.load({
+    var Interactivideo = new Interactivideo('js-Interactivideo');
+    Interactivideo.load({
       'eventId': 'movie01',
       'dir': './Jsons',
     });
-    dolphin.load({
+    Interactivideo.load({
       'eventId': 'movie02',
       'dir': './Jsons02',
     });
     
-    dolphin.on('loadEnd', function(e) {
+    Interactivideo.on('loadEnd', function(e) {
     });
 
     $('#js-play').on('click', function() {
-      dolphin.play('movie01');
+      Interactivideo.play('movie01');
     });
     $('#js-play02').on('click', function() {
-      dolphin.play('movie02');
+      Interactivideo.play('movie02');
     });
     $('#js-stop').on('click', function() {
-      dolphin.stop();
+      Interactivideo.stop();
     });
     $('#js-pause').on('click', function() {
-      dolphin.pause();
+      Interactivideo.pause();
     });
     
-    dolphin.on('playing', function(e) {
+    Interactivideo.on('playing', function(e) {
       //this.play(e.eventId);
       console.log(e.playing_rate);
     });
