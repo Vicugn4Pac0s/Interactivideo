@@ -68,6 +68,8 @@ export default class {
     this.frame++;
     if (this.frame >= this.aData.data.frames) {
       this.frame = 0;
+      if(this.Core.options.loop === 1) return;
+      
       this.stop();
       this.Core.Observer.trigger("end", { eventId: this.aData.id }); // オブザーバーENDイベント
     }

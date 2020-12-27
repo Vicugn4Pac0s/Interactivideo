@@ -40,7 +40,9 @@
   <script src="./main.js"></script>
   <script>
 
-    var Interactivideo = new Interactivideo('js-Interactivideo');
+    var Interactivideo = new Interactivideo('js-Interactivideo', {
+      autoplay: 1,
+    });
     Interactivideo.load({
       'eventId': 'movie01',
       'dir': './Jsons',
@@ -68,7 +70,7 @@
     
     Interactivideo.on('playing', function(e) {
       //this.play(e.eventId);
-      console.log(e.playing_rate);
+      //console.log(e.playing_rate);
     });
   </script>
 </body>

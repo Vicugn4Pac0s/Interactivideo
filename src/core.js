@@ -9,6 +9,11 @@ export default class {
     this.DataManager = new dataManager();
     this.Player = new player(this, {});
     this.Observer = new observer();
+
+    this.options = {
+      autoplay: options.autoplay || 0,
+      loop: options.loop || 0,
+    };
   }
   on(eventType, callback) {
     switch (eventType) {
@@ -36,6 +41,14 @@ export default class {
   }
   load(options) {
     new loader(this, options);
+    if(this.options.autoplay) {
+      let self = this,
+          eventId = options.eventId;
+      self.on('loadEnd', function(e) {
+        if(eventId !== e.eventId) return;
+        self.play(eventId);
+      });
+    }
   }
   play(eventId) {
     this.Player.play(eventId);
