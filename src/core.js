@@ -41,14 +41,6 @@ export default class {
   }
   load(options) {
     new loader(this, options);
-    if(this.options.autoplay) {
-      let self = this,
-          eventId = options.eventId;
-      self.on('loadEnd', function(e) {
-        if(eventId !== e.eventId) return;
-        self.play(eventId);
-      });
-    }
   }
   play(eventId) {
     this.Player.play(eventId);

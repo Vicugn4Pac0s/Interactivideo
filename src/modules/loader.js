@@ -20,6 +20,9 @@ export default class {
       self.loadData();
       self.Core.Observer.trigger('loadStart', { eventId: self.eventId }); // オブザーバーLOADSTARTイベント
     });
+
+    if(self.Core.options.autoplay) self.autoPlay(); //自動再生
+    
   }
   setFilePaths(files) {
     for(let i=0;i<files; i++) {
@@ -37,6 +40,13 @@ export default class {
       }
       self.current++;
       self.loadData();
+    });
+  }
+  autoPlay() {
+    let self = this
+    self.Core.on('loadEnd', function(e) {
+      if(e.eventId !== self.eventId) return;
+      self.Core.play(self.eventId);
     });
   }
 }
